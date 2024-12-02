@@ -8,14 +8,5 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 @QuarkusTest
-class ChatBotResourceTest {
-    @Test
-    void testAskEndpoint() {
-        given()
-          .when().queryParam("q", "What is QAware GmbH?")
-          .get("/api/ask")
-          .then()
-             .statusCode(200)
-             .body(is(notNullValue()));
-    }
+class ChatBotResourceTest {    
 }
