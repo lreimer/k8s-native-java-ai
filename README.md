@@ -94,7 +94,8 @@ kollama expose phi3 --service-type LoadBalancer
 OLLAMA_HOST=localhost:11434 ollama run phi3
 OLLAMA_HOST=localhost:11434 ollama run llama3.1
 
-# call the chat API of Ollama
+# call the chat API of Ollama or OpenAI
+# curl http://localhost:11434/v1/chat/completions
 curl http://localhost:11434/api/chat  \
   -H "Content-Type: application/json"  \
   -d '{
