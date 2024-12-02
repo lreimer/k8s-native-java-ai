@@ -12,10 +12,15 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
 
     implementation 'io.quarkus:quarkus-rest'
+
+    implementation 'io.quarkus:quarkus-smallrye-health'
+    implementation 'io.quarkus:quarkus-smallrye-metrics'
+
     implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-core:0.22.0'
     implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-openai:0.22.0'
+    
     implementation 'io.quarkus:quarkus-arc'
-
+    
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 }
