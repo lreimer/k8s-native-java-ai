@@ -104,7 +104,7 @@ jobs:
       uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
       with:
         context: ./openai-chat-service/
-        file: ./src/main/docker/Dockerfile.jvm
+        file: ./openai-chat-service/src/main/docker/Dockerfile.jvm
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
