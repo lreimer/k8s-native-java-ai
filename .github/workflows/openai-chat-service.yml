@@ -18,6 +18,9 @@ defaults:
  run:
   working-directory: ./openai-chat-service
 
+env:
+  QUARKUS_LANGCHAIN4J_OPENAI_API_KEY: ${{secrets.QUARKUS_LANGCHAIN4J_OPENAI_API_KEY}}
+
 jobs:
   build-and-publish:
 
@@ -52,6 +55,9 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
