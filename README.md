@@ -13,6 +13,12 @@ make bootstrap-flux2
 
 ## Building an OpenAI Proxy using Envoy
 
+```bash
+# in order for the proxy to work ou have to manually create a Kubernetes secret
+# that contains an OPENAI_API_KEY environment variable
+kubectl create secret generic openai-api-key --from-literal=OPENAI_API_KEY=$OPENAI_API_KEY
+```
+
 
 ## Maintainer
 

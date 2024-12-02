@@ -28,3 +28,6 @@ spec:
           limits:
             memory: "64Mi"
             cpu: "500m"
+        envFrom:
+        - secretRef:
+            name: openai-api-key
