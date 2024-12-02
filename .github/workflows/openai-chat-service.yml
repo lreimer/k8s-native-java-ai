@@ -11,38 +11,28 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+    paths: [openai-chat-service/*]
+    
   pull_request:
     branches: [ "main" ]
+    paths: [openai-chat-service/*]
 
 defaults:
  run:
   working-directory: ./openai-chat-service
 
 env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}-openai-chat-service
+  # required for OpenAI API access
   QUARKUS_LANGCHAIN4J_OPENAI_API_KEY: ${{secrets.QUARKUS_LANGCHAIN4J_OPENAI_API_KEY}}
 
 jobs:
   build-and-publish:
-
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-
-    - name: Build with Gradle Wrapper
-      run: ./gradlew build
-
-  dependency-submission:
 
     runs-on: ubuntu-latest
     permissions:
@@ -58,6 +48,9 @@ jobs:
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+
+    - name: Build with Gradle Wrapper
+      run: ./gradlew build
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
