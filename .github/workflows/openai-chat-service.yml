@@ -56,3 +56,8 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+      with:
+        # The gradle project is not in the root of the repository.
+        build-root-directory: openai-chat-service
+        # By default, failure to generate a dependency graph will cause the workflow to fail
+        dependency-graph-continue-on-failure: true
