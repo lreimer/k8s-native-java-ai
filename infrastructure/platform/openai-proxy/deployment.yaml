@@ -18,6 +18,7 @@ spec:
       containers:
       - name: openai-proxy
         image: ghcr.io/lreimer/k8s-native-java-ai-openai-proxy:main
+        imagePullPolicy: Always
         ports:
         - name: http
           containerPort: 10000
