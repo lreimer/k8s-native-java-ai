@@ -13,7 +13,7 @@ class ChatBotResourceTest {
     void testAskEndpoint() {
         given()
           .when().queryParam("q", "What is QAware GmbH?")
-          .get("/ask")
+          .get("/api/ask")
           .then()
              .statusCode(200)
              .body(is(notNullValue()));
