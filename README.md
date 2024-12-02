@@ -1,4 +1,4 @@
-# Kk8s-native-java-ai
+# Java-based AI on Kubernetes
 
 Demo repository for Java-based AI on Kubernetes from Development to Deployment.
 
@@ -31,7 +31,7 @@ curl http://localhost:10000/v1/chat/completions \
    }'
 ```
 
-## Deploying custom LLMs using Kollama Operator
+## Deploying custom LLMs using Ollama Operator
 
 ```bash
 # model deployment using CLI
@@ -51,11 +51,11 @@ OLLAMA_HOST=localhost:11434 ollama run llama3.1
 curl http://localhost:11434/v1/chat/completions  \
   -H "Content-Type: application/json"  \
   -d '{
-    "model": "phi3",
+    "model": "llama3.1",
     "messages": [
       {
         "role": "user",
-        "content": "Hello!"
+        "content": "Say this is a test!"
       }
     ]
   }'
