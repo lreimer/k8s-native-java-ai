@@ -33,7 +33,33 @@ curl http://localhost:10000/v1/chat/completions \
 
 ## Deploying custom LLMs using Kollama Operator
 
+```bash
+# model deployment using CLI
+kollama deploy llama3.1
+kollama expose llama3.1 --service-name=ollama-model-llama31-lb --service-type=LoadBalancer
 
+# model deployment via CRD
+kubectl apply -f infrastructure/models/phi3.yaml
+kollama expose phi3 --service-type LoadBalancer
+
+# to start a chat with ollama
+# exchange localhost with the actual LoadBalancer IP
+OLLAMA_HOST=localhost:11434 ollama run phi3
+OLLAMA_HOST=localhost:11434 ollama run llama3.1
+
+# to integrate with your OpenAI API compatible client
+curl http://localhost:11434/v1/chat/completions  \
+  -H "Content-Type: application/json"  \
+  -d '{
+    "model": "phi3",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello!"
+      }
+    ]
+  }'
+```
 
 ## Maintainer
 
