@@ -13,11 +13,11 @@ on:
     branches: [ "main" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
-    paths: [openai-chat-service/*]
+    paths: [openai-chat-service/**/*]
     
   pull_request:
     branches: [ "main" ]
-    paths: [openai-chat-service/*]
+    paths: [openai-chat-service/**/*]
 
 defaults:
  run:

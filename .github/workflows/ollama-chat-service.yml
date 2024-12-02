@@ -13,11 +13,11 @@ on:
     branches: [ "main" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
-    paths: [ollama-chat-service/*]
+    paths: [ollama-chat-service/**/*]
     
   pull_request:
     branches: [ "main" ]
-    paths: [ollama-chat-service/*]
+    paths: [ollama-chat-service/**/*]
 
 defaults:
  run:
