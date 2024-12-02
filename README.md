@@ -11,6 +11,30 @@ make create-gke-cluster
 make bootstrap-flux2
 ```
 
+## Building a chat service with Quarkus and OpenAI
+
+```bash
+# use the Quarkus starter to create a service skeleton
+# select desired build system and dependencies
+open https://code.quarkus.io
+
+# for local development use the following commands 
+cd openai-chat-service
+export QUARKUS_LANGCHAIN4J_OPENAI_API_KEY=$OPENAI_API_KEY
+./gradlew quarkusDev
+
+# interact with the service locally
+http get localhost:8080/api/ask q=="Was macht QAware?"
+http get localhost:8080/api/ask q=="What does QAware do?"
+http get localhost:8080/api/ask q=="Was macht Microsoft?"
+http get localhost:8080/api/ask q=="What is the sum of 40 and 2?"
+http get localhost:8080/api/ask q=="What does QAware do? Send email to mlr@qaware.de with subject Information and response as message."
+
+# this here is managed by Flux2
+kubectl apply -k infrastructure/services/openai-chat-service/
+kubectl get all
+```
+
 ## Building an OpenAI Proxy using Envoy
 
 The access to the OpenAI API is provided using a cluster internal Envoy based proxy.
@@ -29,6 +53,29 @@ curl http://localhost:10000/v1/chat/completions \
      "messages": [{"role": "user", "content": "Say this is a test!"}],
      "temperature": 0.7
    }'
+```
+
+## Building a chat service with Quarkus and Ollama
+
+```bash
+# this is 99% similar to the instructions of using Quarkus and OpenAI
+# the only difference, use
+#    'io.quarkiverse.langchain4j:quarkus-langchain4j-ollama:0.22.0'
+# instead of 
+#    'io.quarkiverse.langchain4j:quarkus-langchain4j-openai:0.22.0'
+
+# for local development use the following commands 
+ollama serve
+ollama run llama3.1
+
+cd ollama-chat-service
+./gradlew quarkusDev
+
+
+
+# this here is managed by Flux2
+kubectl apply -k infrastructure/services/openai-chat-service/
+kubectl get all
 ```
 
 ## Deploying custom LLMs using Ollama Operator
