@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatbot-easy-rag
+  namespace: default
+  labels:
+    app: chatbot-easy-rag
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: chatbot-easy-rag
+  template:
+    metadata:
+      labels:
+        app: chatbot-easy-rag
+    spec:
+      containers:
+      - name: chatbot-easy-rag
+        image: ghcr.io/lreimer/k8s-native-java-ai-chatbot-easy-rag:main
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        env:
+        - name: QUARKUS_LANGCHAIN4J_OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-api-key
+              key: OPENAI_API_KEY
