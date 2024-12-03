@@ -30,8 +30,6 @@ spec:
             memory: "256Mi"
             cpu: "500m"
         env:
-        - name: QUARKUS_LANGCHAIN4J_EASY_RAG_REUSE_EMBEDDINGS_ENABLED
-          value: "false"
         - name: QUARKUS_LANGCHAIN4J_OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
