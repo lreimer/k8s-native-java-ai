@@ -14,24 +14,24 @@ spec:
   interval: 1h0m0s
   releaseName: langflow-ide
   targetNamespace: langflow
-  values:
+  values: 
     langflow:
       backend:
         env:
           - name: "LANGFLOW_PORT"
             value: "7860"
-      sqlite:
-        enabled: true
-        volume:
-          size: "1Gi"
-          existingStorageClassName: {}
-          # For GCP
-          storageClass:
-            provisioner: kubernetes.io/gce-pd
-            type: pd-ssd
-            fsType: ext4
-            extraParams:
-              replication-type: none
+        sqlite:
+          enabled: true
+          volume:
+            size: "1Gi"
+            existingStorageClassName: {}
+            # For GCP
+            storageClass:
+              provisioner: kubernetes.io/gce-pd
+              type: pd-ssd
+              fsType: ext4
+              extraParams:
+                replication-type: none
 
 # ---
 #apiVersion: helm.toolkit.fluxcd.io/v2beta1

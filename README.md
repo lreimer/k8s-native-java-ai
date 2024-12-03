@@ -9,6 +9,9 @@ Demo repository for Java-based AI on Kubernetes from Development to Deployment.
 # bootstrap AI platform components and services using Flux2
 make create-gke-cluster
 make bootstrap-flux2
+
+# required to configure Config Connector with Google Cloud ProjectID
+kubectl annotate namespace default cnrm.cloud.google.com/project-id="cloud-native-experience-lab"
 ```
 
 ## Building a chat service with Quarkus and OpenAI
