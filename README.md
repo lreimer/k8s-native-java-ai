@@ -71,7 +71,8 @@ ollama run llama3.1
 cd ollama-chat-service
 ./gradlew quarkusDev
 
-
+# interact with the service locally
+http get localhost:8080/api/ask q=="Was macht die QAware GmbH?"
 
 # this here is managed by Flux2
 kubectl apply -k infrastructure/services/openai-chat-service/
@@ -107,6 +108,26 @@ curl http://localhost:11434/api/chat  \
       }
     ]
   }'
+```
+
+## Deploying Langchain4J Easy RAG Chatbot
+
+```bash
+# see https://docs.quarkiverse.io/quarkus-langchain4j/dev/easy-rag.html
+# see https://github.com/quarkiverse/quarkus-langchain4j/tree/main/samples/chatbot-easy-rag
+```
+
+## Planing Kubernetes Cluster Topology
+
+```bash
+# useful information to setup K8s cluster topology with GPUs
+
+# see https://cloud.google.com/compute/docs/gpus?hl=de
+# see https://cloud.google.com/compute/all-pricing?hl=de
+# see https://cloud.google.com/compute/gpus-pricing?hl=de#other-gpu-models
+
+# see https://cloud.google.com/compute/docs/gpus/create-gpu-vm-general-purpose?hl=de
+# see https://cloud.google.com/compute/docs/disks/local-ssd?hl=de
 ```
 
 ## Maintainer

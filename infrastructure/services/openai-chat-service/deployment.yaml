@@ -50,6 +50,12 @@ spec:
             secretKeyRef:
               name: openai-api-key
               key: OPENAI_API_KEY
+
         # - name: QUARKUS_LANGCHAIN4J_OPENAI_BASE_URL
         #   value: "http://openai-proxy-service.default.svc.cluster.local:10000"
+
+        # - name: QUARKUS_LANGCHAIN4J_OPENAI_CHAT_MODEL_MODEL_NAME
+        #   value: "llama3.1"
+        # - name: QUARKUS_LANGCHAIN4J_OPENAI_BASE_URL
+        #   value: "http://ollama-model-llama31.default.svc.cluster.local:11434"
         

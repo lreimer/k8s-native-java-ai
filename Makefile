@@ -10,7 +10,7 @@ create-gke-cluster:
 		--release-channel=regular \
 		--cluster-version=1.30 \
 		--region=$(GCP_REGION) \
-		--addons HttpLoadBalancing,HorizontalPodAutoscaling \
+		--addons HttpLoadBalancing,HorizontalPodAutoscaling,ConfigConnector \
 		--workload-pool=$(GCP_PROJECT).svc.id.goog \
 		--num-nodes=1 \
 		--min-nodes=1 --max-nodes=5 \
