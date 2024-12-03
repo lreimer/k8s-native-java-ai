@@ -1,4 +1,5 @@
 *
+!easy-rag-embeddings.json
 !catalog/*
 !target/*-runner
 !target/*-runner.jar

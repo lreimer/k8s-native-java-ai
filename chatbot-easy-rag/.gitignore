@@ -43,4 +43,3 @@ nb-configuration.xml
 /.quarkus/cli/plugins/
 # TLS Certificates
 .certs/
-easy-rag-embeddings.json
