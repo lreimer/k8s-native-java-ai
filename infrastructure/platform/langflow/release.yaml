@@ -32,6 +32,11 @@ spec:
         env:
           - name: "LANGFLOW_PORT"
             value: "7860"
+          - name: openai_key_var
+            valueFrom:
+              secretKeyRef:
+                name: openai-api-key
+                key: OPENAI_API_KEY
 
         externalDatabase:
           enabled: true
