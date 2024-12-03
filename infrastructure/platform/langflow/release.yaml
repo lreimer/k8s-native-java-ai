@@ -16,6 +16,9 @@ spec:
   targetNamespace: langflow
   values: 
     langflow:
+      frontend:
+        service:
+          type: LoadBalancer
       backend:
         env:
           - name: "LANGFLOW_PORT"
