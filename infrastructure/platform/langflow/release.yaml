@@ -15,26 +15,44 @@ spec:
   releaseName: langflow-ide
   targetNamespace: langflow
   values: 
+    postgresql:
+      enabled: true
+      fullnameOverride: "langflow-ide-postgresql-service"
+      auth:
+        username: "langflow"
+        password: "langflow-postgres"
+        database: "langflow-db"
+
     langflow:
       frontend:
         service:
           type: LoadBalancer
+
       backend:
         env:
           - name: "LANGFLOW_PORT"
             value: "7860"
-        sqlite:
+
+        externalDatabase:
           enabled: true
-          volume:
-            size: "1Gi"
-            existingStorageClassName: {}
-            # For GCP
-            storageClass:
-              provisioner: kubernetes.io/gce-pd
-              type: pd-ssd
-              fsType: ext4
-              extraParams:
-                replication-type: none
+          driver:
+            value: "postgresql"
+          host:
+            value: "langflow-ide-postgresql-service"
+          port:
+            value: "5432"
+          database:
+            value: "langflow-db"
+          user:
+            value: "langflow"
+          password:
+            valueFrom:
+              secretKeyRef:
+                key: "password"
+                name: "langflow-ide-postgresql-service"
+        
+        sqlite:
+          enabled: false
 
 # ---
 #apiVersion: helm.toolkit.fluxcd.io/v2beta1
