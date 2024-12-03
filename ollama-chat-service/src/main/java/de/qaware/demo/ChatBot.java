@@ -8,6 +8,7 @@ import io.quarkiverse.langchain4j.RegisterAiService;
 @RegisterAiService(
     chatMemoryProviderSupplier = ChatBotMemoryProvider.class
 )
+@ApplicationScoped
 public interface ChatBot {
 
     @SystemMessage("""
