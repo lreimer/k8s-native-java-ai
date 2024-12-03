@@ -1,19 +1,21 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: langflow-ide
-  namespace: flux-system
-spec:
-  chart:
-    spec:
-      chart: langflow-ide
-      sourceRef:
-        kind: HelmRepository
-        name: langflow
-      version: "0.1.0"
-  interval: 1h0m0s
-  releaseName: langflow-ide
-  targetNamespace: langflow
+#apiVersion: helm.toolkit.fluxcd.io/v2beta1
+#kind: HelmRelease
+#metadata:
+#  name: langflow-ide
+#  namespace: flux-system
+#spec:
+#  chart:
+#    spec:
+#      chart: langflow-ide
+#      sourceRef:
+#        kind: HelmRepository
+#        name: langflow
+#      version: "0.1.0"
+#  interval: 1h0m0s
+#  releaseName: langflow-ide
+#  targetNamespace: langflow
+#  values:
+
 
 # ---
 #apiVersion: helm.toolkit.fluxcd.io/v2beta1
