@@ -27,6 +27,12 @@ spec:
           projectId: cloud-native-experience-lab
           credentialsJson: airbyte.json
           credentialsPath: airbyte.json
+      secretsManager:
+        type: googleSecretManager
+        secretName: airbyte-config-secrets
+        googleSecretManager:
+          projectId: cloud-native-experience-lab
+          credentialsSecretKey: airbyte.json
     webapp:
       service:
         type: LoadBalancer
