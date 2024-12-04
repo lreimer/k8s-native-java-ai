@@ -26,7 +26,7 @@ spec:
         gcs:
           projectId: cloud-native-experience-lab
           credentialsJson: airbyte.json
-          credentialsPath: airbyte.json
+          credentialsPath: /secrets/gcs-log-creds/airbyte.json
       secretsManager:
         type: googleSecretManager
         secretName: airbyte-config-secrets
