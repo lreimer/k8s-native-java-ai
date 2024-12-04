@@ -26,6 +26,7 @@ spec:
         gcs:
           projectId: cloud-native-experience-lab
           credentialsJson: airbyte.json
+          credentialsPath: airbyte.json
     webapp:
       service:
         type: LoadBalancer
