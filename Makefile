@@ -35,5 +35,15 @@ bootstrap-flux2:
 		--read-write-key \
 		--personal
 
+create-gke-airbyte-sa:
+	@gcloud iam service-accounts create airbyte --description="Airbyte Service Account" --display-name="Airbyte Service Account"
+	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/storage.admin --member=serviceAccount:airbyte@$(GCP_PROJECT).iam.gserviceaccount.com 
+	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/storage.objectCreator --member=serviceAccount:airbyte@$(GCP_PROJECT).iam.gserviceaccount.com
+	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/secretmanager.secretAccessor --member=serviceAccount:airbyte@$(GCP_PROJECT).iam.gserviceaccount.com
+	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/secretmanager.secretVersionAdder --member=serviceAccount:airbyte@$(GCP_PROJECT).iam.gserviceaccount.com
+	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/secretmanager.secretVersionManager --member=serviceAccount:airbyte@$(GCP_PROJECT).iam.gserviceaccount.com
+	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/secretmanager.viewer --member=serviceAccount:airbyte@$(GCP_PROJECT).iam.gserviceaccount.com
+	@gcloud iam service-accounts keys create airbyte.json --iam-account=airbyte@$(GCP_PROJECT).iam.gserviceaccount.com
+
 delete-gke-clusters:
 	@gcloud container clusters delete k8s-native-java-ai --region=$(GCP_REGION) --async --quiet

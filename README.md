@@ -120,6 +120,19 @@ curl http://localhost:11434/api/chat  \
 # see https://github.com/quarkiverse/quarkus-langchain4j/tree/main/samples/chatbot-easy-rag
 ```
 
+## Deploying Airbyte
+
+```bash
+# make sure to create the Airbyte service account
+make create-gke-airbyte-sa
+
+# bind the SA to your personal gCP user (optional)
+gcloud iam service-accounts add-iam-policy-binding airbyte@$GCP_PROJECT.iam.gserviceaccount.com --member="user:mario-leander.reimer@qaware.de" --role="roles/iam.serviceAccountUser"
+
+# now create the Airbyte secret with the relevant GCP credentials.
+kubectl create secret generic airbyte-config-secrets -n airbyte --from-file=airbyte.json
+```
+
 ## Planing Kubernetes Cluster Topology
 
 ```bash
