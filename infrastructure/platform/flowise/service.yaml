@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flowise-service
+  namespace: flowise
+  annotations:
+    cloud.google.com/backend-config: '{"default": "flowise-backendconfig"}'
+  labels:
+    app: flowise
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
+  selector:
+    app: flowise
+  type: LoadBalancer
