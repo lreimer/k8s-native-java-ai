@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-secrets-sa
+  namespace: external-secrets
+  annotations:
+    iam.gke.io/gcp-service-account: external-secrets-sa@cloud-native-experience-lab.iam.gserviceaccount.com

@@ -14,6 +14,22 @@ make bootstrap-flux2
 kubectl annotate namespace default cnrm.cloud.google.com/project-id="cloud-native-experience-lab"
 ```
 
+## External Secrets using Google Cloud Security Manager
+
+```bash
+# credentials to access certain GCP infrastructure components are stored externally
+# make sure that the Google Cloud Security Manager API is enabled in your project
+make create-gke-es-sa
+
+# if required change and apply the ClusterSecretStore CRD
+kubectl apply -f infrastructure/platform/external-secrets/secret-store.yaml
+
+# this is how to create secrets in the 
+gcloud secrets create external-secrets-sa --data-file=external-secrets-sa.json --replication-policy=automatic
+kubectl apply -f infrastructure/platform/external-secrets/sa-secret.yaml
+kubectl get secret gcp-sa-credentials -o jsonpath='{.data.external-secrets-sa.json}' | base64 -d
+```
+
 ## Building a chat service with Quarkus and OpenAI
 
 ```bash

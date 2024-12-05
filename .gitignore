@@ -24,4 +24,4 @@ gradle-app.setting
 .vscode/
 .DS_Store
 target/
-airbyte.json
+*.json
