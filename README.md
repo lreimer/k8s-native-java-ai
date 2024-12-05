@@ -27,7 +27,7 @@ kubectl apply -f infrastructure/platform/external-secrets/secret-store.yaml
 # this is how to create secrets in the 
 gcloud secrets create external-secrets-sa --data-file=external-secrets-sa.json --replication-policy=automatic
 kubectl apply -f infrastructure/platform/external-secrets/sa-secret.yaml
-kubectl get secret gcp-sa-credentials -o jsonpath='{.data.external-secrets-sa.json}' | base64 -d
+kubectl get secret gcp-sa-credentials -o jsonpath='{.data.external-secrets-sa\.json}' | base64 -d
 ```
 
 ## Building a chat service with Quarkus and OpenAI

@@ -47,6 +47,7 @@ create-gke-airbyte-sa:
 	@gcloud iam service-accounts keys create airbyte.json --iam-account=airbyte@$(GCP_PROJECT).iam.gserviceaccount.com
 
 # Create a Service Account for External Secrets
+# Service Account will also be used for Workload Identity
 create-gke-es-sa:
 	@gcloud iam service-accounts create external-secrets-sa --description="External Secrets Service Account" --display-name="External Secrets Service Account"
 	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/secretmanager.secretAccessor --member=serviceAccount:external-secrets-sa@$(GCP_PROJECT).iam.gserviceaccount.com
@@ -54,6 +55,7 @@ create-gke-es-sa:
 	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/secretmanager.secretVersionManager --member=serviceAccount:external-secrets-sa@$(GCP_PROJECT).iam.gserviceaccount.com
 	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/secretmanager.viewer --member=serviceAccount:external-secrets-sa@$(GCP_PROJECT).iam.gserviceaccount.com
 	@gcloud projects add-iam-policy-binding $(GCP_PROJECT) --role=roles/iam.serviceAccountTokenCreator --member=serviceAccount:external-secrets-sa@$(GCP_PROJECT).iam.gserviceaccount.com
+	@gcloud iam service-accounts add-iam-policy-binding external-secrets-sa@$(GCP_PROJECT).iam.gserviceaccount.com --member="serviceAccount:$(GCP_PROJECT).svc.id.goog[external-secrets/external-secrets-sa]" --role="roles/iam.workloadIdentityUser" 
 	@gcloud iam service-accounts keys create external-secrets-sa.json --iam-account=external-secrets-sa@$(GCP_PROJECT).iam.gserviceaccount.com
 
 delete-gke-clusters:
