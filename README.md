@@ -22,10 +22,12 @@ kubectl annotate namespace default cnrm.cloud.google.com/project-id="cloud-nativ
 make create-gke-es-sa
 
 # if required change and apply the ClusterSecretStore CRD
-kubectl apply -f infrastructure/platform/external-secrets/secret-store.yaml
+# kubectl apply -f infrastructure/platform/external-secrets/secret-store.yaml
 
-# this is how to create secrets in the 
+# this is how to create secrets in the Security Manager
 gcloud secrets create external-secrets-sa --data-file=external-secrets-sa.json --replication-policy=automatic
+
+# to demonstrate the secrets synchronization
 kubectl apply -f infrastructure/platform/external-secrets/sa-secret.yaml
 kubectl get secret gcp-sa-credentials -o jsonpath='{.data.external-secrets-sa\.json}' | base64 -d
 ```
