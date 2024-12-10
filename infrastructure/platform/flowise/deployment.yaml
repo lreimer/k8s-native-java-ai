@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: flowise
-        image: gcr.io/cloud-native-experience-lab/flowise:2.2.1
+        image: flowiseai/flowise:2.2.1
         imagePullPolicy: Always
         resources: 
           requests:
