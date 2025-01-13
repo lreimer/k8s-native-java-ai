@@ -16,7 +16,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-smallrye-health'
     implementation 'io.quarkus:quarkus-smallrye-metrics'
 
-    implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-core:0.22.0'
+    implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-core:0.23.3'
     implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-openai:0.22.0'
     
     implementation 'io.quarkus:quarkus-arc'
