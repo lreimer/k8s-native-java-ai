@@ -1,6 +1,6 @@
 # https://app.electricitymaps.com/map?lang=de
 # https://cloud.google.com/compute/docs/regions-zones?hl=de#available
-GCP_PROJECT ?= cloud-native-experience-lab
+GCP_PROJECT ?= data-engineering-lab-411011
 GCP_REGION ?= europe-west4
 
 GITHUB_USER ?= lreimer
@@ -8,7 +8,7 @@ GITHUB_USER ?= lreimer
 create-gke-cluster:
 	@gcloud container clusters create k8s-native-java-ai \
 		--release-channel=regular \
-		--cluster-version=1.30 \
+		--cluster-version=1.32 \
 		--region=$(GCP_REGION) \
 		--addons HttpLoadBalancing,HorizontalPodAutoscaling,ConfigConnector \
 		--workload-pool=$(GCP_PROJECT).svc.id.goog \
