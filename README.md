@@ -100,6 +100,18 @@ kubectl apply -k infrastructure/services/openai-chat-service/
 kubectl get all
 ```
 
+## Building AI Agent using Google ADK (Java)
+
+```bash
+cd hello-time-agent
+
+mvn compile exec:java -Dexec.mainClass="com.example.agent.AgentCliRunner"
+
+mvn compile exec:java \
+    -Dexec.mainClass="com.google.adk.web.AdkWebServer" \
+    -Dexec.args="--adk.agents.source-dir=target --server.port=8080"
+```
+
 ## Deploying custom LLMs using Ollama Operator
 
 ```bash
